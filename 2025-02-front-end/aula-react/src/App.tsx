@@ -1,20 +1,18 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import Soma from "./components/operacoes/Soma";
-import { ParticlesContainer } from "./components/ParticlesContainer";
-import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
+import PrimeiraAula from "./pages/PrimeiraAula";
+import SegundaAula from "./pages/SegundaAula";
+import TerceiraAula from "./pages/TerceiraAula/TerceiraAula";
+import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <div>
-      <header className="cabecalho">Header</header>
-      <aside>Aside</aside>
-      <main>Main</main>
-      <footer>Footer</footer>
-      <Soma a={5} b={7} />
-      <Button variant="primary">Primary</Button>
-      <Spinner animation="border" />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/primeira-aula" element={<PrimeiraAula />} />
+        <Route path="/segunda-aula" element={<SegundaAula />} />
+        <Route path="/terceira-aula" element={<TerceiraAula />} />
+      </Routes>
     </div>
   );
 }

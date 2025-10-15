@@ -1,10 +1,10 @@
-import MostraNome from "./components/MostraNome";
-import Dobra from "./components/Dobra";
-import NomeCompleto from "./components/NomeCompleto";
-import Soma from "./components/operacoes/Soma";
-import Subtrai from "./components/operacoes/Subtrai";
-import Multiplica from "./components/operacoes/Multiplica";
-import Divide from "./components/operacoes/Divide";
+import MostraNome from "../components/MostraNome";
+import Dobra from "../components/Dobra";
+import NomeCompleto from "../components/NomeCompleto";
+import Soma from "../components/operacoes/Soma";
+import Subtrai from "../components/operacoes/Subtrai";
+import Multiplica from "../components/operacoes/Multiplica";
+import Divide from "../components/operacoes/Divide";
 
 export default function PrimeiraAula() {
   return (

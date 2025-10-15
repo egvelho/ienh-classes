@@ -1,5 +1,5 @@
-import Titulo from "./components/Titulo";
-import Retangulo from "./components/Retangulo";
+import Titulo from "../components/Titulo";
+import Retangulo from "../components/Retangulo";
 
 export default function SegundaAula() {
   return (
