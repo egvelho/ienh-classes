@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea id="textinho"></textarea>
+    <script type="module">
+      /*
+        Assumindo que textinho.value guarda o texto que o usuário
+        está digitando no textarea, utilize uma pilha para
+        implementar ctrl+z (desfazer) e ctrl+y (refazer)
+      */
+      import { Stack } from "./stack/stack.js";
+      const textinho = document.getElementById("textinho");
+      const undoStack = new Stack();
+
+      function undo() {
+        console.log("undo");
+      }
+
+      function redo() {
+        console.log("redo");
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.ctrlKey && event.key === "z") {
+          event.preventDefault();
+          undo();
+        } else if (event.ctrlKey && event.key === "y") {
+          event.preventDefault();
+          redo();
+        }
+      });
+    </script>
+  </body>
+</html>
