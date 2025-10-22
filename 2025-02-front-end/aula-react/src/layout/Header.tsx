@@ -7,6 +7,7 @@ export default function Header() {
       <Link to="/primeira-aula">Primeira aula</Link>
       <Link to="/segunda-aula">Segunda aula</Link>
       <Link to="/terceira-aula">Terceira aula</Link>
+      <Link to="/quarta-aula">Quarta aula</Link>
     </header>
   );
 }

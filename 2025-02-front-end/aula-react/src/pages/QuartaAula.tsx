@@ -1,0 +1,47 @@
+import { useState } from "react";
+
+export default function QuartaAula() {
+  return (
+    <div>
+      <Contador />
+      <SimNao />
+    </div>
+  );
+}
+
+function SimNao() {
+  const [ehSim, setEhSim] = useState(true);
+
+  function trocaSim() {
+    setEhSim(!ehSim);
+  }
+
+  return <div onClick={trocaSim}>{ehSim === true ? "Sim" : "Não"}</div>;
+}
+
+function Contador() {
+  const [contador, setContador] = useState(0);
+
+  function quandoClicaMenos() {
+    console.log("menos", contador);
+    const proximoContador = contador - 2;
+    if (proximoContador >= 0) {
+      setContador(proximoContador);
+    }
+  }
+
+  function quandoClicaMais() {
+    const proximoContador = contador + 2;
+    if (proximoContador <= 20) {
+      setContador(proximoContador);
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={quandoClicaMenos}>-</button>
+      <input type="text" value={contador} />
+      <button onClick={quandoClicaMais}>+</button>
+    </div>
+  );
+}
