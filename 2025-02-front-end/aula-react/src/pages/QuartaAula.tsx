@@ -5,8 +5,28 @@ export default function QuartaAula() {
     <div>
       <Contador />
       <SimNao />
+      <AzulVermelho />
     </div>
   );
+}
+
+function AzulVermelho() {
+  const [cor, setCor] = useState("blue");
+  const estilo = {
+    width: "100px",
+    height: "80px",
+    backgroundColor: cor,
+  };
+
+  function trocaCor() {
+    if (cor === "blue") {
+      setCor("red");
+    } else {
+      setCor("blue");
+    }
+  }
+
+  return <div onClick={trocaCor} style={estilo}></div>;
 }
 
 function SimNao() {
