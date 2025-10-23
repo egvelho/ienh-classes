@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function QuartaAula() {
   return (
@@ -7,6 +7,31 @@ export default function QuartaAula() {
       <SimNao />
       <AzulVermelho />
       <OnOff />
+      <ListUsuarios />
+    </div>
+  );
+}
+
+function ListUsuarios() {
+  const [meusUsuarios, setMeusUsuarios] = useState([]);
+
+  async function carregaUsuarios() {
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/users");
+    const usuarios = await resposta.json();
+    setMeusUsuarios(usuarios);
+  }
+
+  function quandoCarrega() {
+    carregaUsuarios();
+  }
+
+  useEffect(quandoCarrega, []);
+
+  return (
+    <div>
+      {meusUsuarios.map((usuario) => (
+        <div>{usuario.name}</div>
+      ))}
     </div>
   );
 }
