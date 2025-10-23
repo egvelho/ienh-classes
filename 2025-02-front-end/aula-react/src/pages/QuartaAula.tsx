@@ -6,6 +6,7 @@ export default function QuartaAula() {
       <Contador />
       <SimNao />
       <AzulVermelho />
+      <OnOff />
     </div>
   );
 }
@@ -62,6 +63,27 @@ function Contador() {
       <button onClick={quandoClicaMenos}>-</button>
       <input type="text" value={contador} />
       <button onClick={quandoClicaMais}>+</button>
+    </div>
+  );
+}
+
+function OnOff() {
+  const [tahLigado, setTahLigado] = useState(true);
+  const estilo = {
+    backgroundColor: tahLigado ? "blue" : "red",
+    padding: "8px",
+    display: "inline-block",
+    color: "white",
+    textTransform: "uppercase",
+  };
+
+  function inverteTahLigado() {
+    setTahLigado(!tahLigado);
+  }
+
+  return (
+    <div onClick={inverteTahLigado} style={estilo}>
+      {tahLigado ? "On" : "Off"}
     </div>
   );
 }
