@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
 
 export default function App() {
-  function quandoInicia() {
+  useEffect(() => {
     fetch("https://pacaro-tarefas.netlify.app/api/duda/tasks");
-  }
+  }, []);
 
-  useEffect(quandoInicia, []);
-
-  return (
-    <div>
-      <Counter />
-    </div>
-  );
+  return <div>hello</div>;
 }
 
 function Counter() {
