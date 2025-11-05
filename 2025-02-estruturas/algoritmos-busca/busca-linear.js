@@ -1,6 +1,4 @@
-const nums = require("./nums.json");
-
-function linearSearch(arr, target) {
+export function linearSearch(arr, target) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === target) {
       return i;
@@ -9,6 +7,3 @@ function linearSearch(arr, target) {
 
   return -1;
 }
-
-const valor = linearSearch(nums, 12355);
-console.log(valor);
