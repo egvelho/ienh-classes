@@ -17,6 +17,16 @@ export default function App() {
 function Counter() {
   const [counter, setCounter] = useState(0);
 
+  useEffect(() => {
+    console.log(`O contador foi iniciado com o valor ${counter}`);
+  }, []);
+
+  useEffect(() => {
+    if (counter % 2 > 0) {
+      alert("É ímpar");
+    }
+  }, [counter]);
+
   function incrementaContador() {
     setCounter(counter + 1);
   }
