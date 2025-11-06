@@ -1,11 +1,23 @@
 import { useEffect, useState } from "react";
 
+const nums = [1, 2, 3, 4, 5];
+
 export default function App() {
   useEffect(() => {
     fetch("https://pacaro-tarefas.netlify.app/api/duda/tasks");
   }, []);
 
-  return <div>hello</div>;
+  const listaNums = nums.map((num) => <ItemNumero numero={num} />);
+
+  return <div>{listaNums}</div>;
+}
+
+type ItemNumeroProps = {
+  numero: number;
+};
+
+function ItemNumero({ numero }: ItemNumeroProps) {
+  return <li className="py-2">{numero}</li>;
 }
 
 function Counter() {
