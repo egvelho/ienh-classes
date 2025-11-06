@@ -3,13 +3,29 @@ import { useEffect, useState } from "react";
 const nums = [1, 2, 3, 4, 5];
 
 export default function App() {
+  const [tasks, setTasks] = useState([]);
+
+  async function carregaTarefas() {
+    const resposta = await fetch(
+      "https://pacaro-tarefas.netlify.app/api/duda/tasks"
+    );
+    const tarefas = await resposta.json();
+    setTasks(tarefas);
+  }
+
   useEffect(() => {
-    fetch("https://pacaro-tarefas.netlify.app/api/duda/tasks");
+    carregaTarefas();
   }, []);
 
-  const listaNums = nums.map((num) => <ItemNumero numero={num} />);
+  useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
 
-  return <div>{listaNums}</div>;
+  const listaTasks = tasks.map((task) => {
+    return <li>{task.description}</li>;
+  });
+
+  return <ul className="list-disc">{listaTasks}</ul>;
 }
 
 type ItemNumeroProps = {
