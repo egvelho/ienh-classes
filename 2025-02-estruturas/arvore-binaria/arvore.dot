@@ -1,0 +1,15 @@
+digraph arvre {
+    A [color="#ff0000" style="filled" shape="box"]
+    B
+    C
+    A -> B
+    A -> C
+    D
+    E
+    B -> D
+    B -> E
+    F
+    G
+    E -> F
+    E -> G
+}

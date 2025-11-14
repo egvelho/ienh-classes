@@ -1,8 +1,8 @@
 import fs from "fs";
 import { DotParser } from "@vizdom/vizdom-ts-node";
 
-const DOT_INPUT = "aula.dot";
-const SVG_OUTPUT = "aula.svg";
+const DOT_INPUT = "arvore.dot";
+const SVG_OUTPUT = "arvore.svg";
 
 const dotCode = fs.readFileSync(DOT_INPUT).toString();
 
