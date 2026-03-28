@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Prop+Double+Ink:wght@100..900&family=Flavors&family=Nabla&display=swap");
+
+body {
+  background-color: #aaa;
+  margin: 0;
+  font-family: "Flavors";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+#barra {
+  background-color: #fff;
+}
+
+#logo-barra {
+  margin-top: 8px;
+  margin-left: 6px;
+  height: 40px;
+}
+
+#banner-pepsiman {
+  width: 100%;
+}
+
+#botao-jogar {
+  top: 8px;
+  right: 8px;
+  position: absolute;
+}
+
+#fab-controller {
+  border: 4px solid black;
+  border-radius: 50%;
+  padding: 18px;
+  background-image: linear-gradient(#c9002b, #005cb4);
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  rotate: 0deg;
+  transition: rotate 2s;
+}
+
+#fab-controller:hover {
+  cursor: pointer;
+  rotate: 360deg;
+}
+
+#fab-controller img {
+  width: 96px;
+  height: 96px;
+}
+
+.botinho {
+  border: none;
+  background-color: #005cb4;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 6px 24px;
+  border-radius: 8px;
+}
+
+.botinho:hover {
+  background-color: #c9002b;
+  cursor: pointer;
+}
+
+#cartoes-container {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.cartao {
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+  margin: 4px;
+  box-shadow: 4px 6px 8px #666;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+#secao-informacoes {
+  width: 100%;
+  height: 640px;
+  background-image: url("imgs/pepsiman-surfando.png");
+  background-size: cover;
+  text-align: center;
+}
+
+#secao-informacoes .cartao {
+  width: 80%;
+  margin-top: 32px;
+  padding: 12px;
+}
+
+.tag {
+  font-size: 80%;
+  background-color: #aaa;
+  border-radius: 8px;
+  padding: 4px;
+}
