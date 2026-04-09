@@ -110,6 +110,6 @@ Agora, faça o seguinte
 - Se a requisição foi mal construída 422
 - Se quebra a integridade da lista, 409
 
-Ao finalizar, envie o link do seu repositório no GitHub e link da API no Vercel para o Classroom.
+Ao finalizar, envie o link do seu repositório no GitHub, com o arquivo de especificação do Bruno.
 
 Como restrição adicional, permita somente o registro de valores dos tipos, string, number, boolean e null.
