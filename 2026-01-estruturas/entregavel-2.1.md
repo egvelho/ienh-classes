@@ -199,6 +199,5 @@ Agora, realize as seguintes operações SEM UTILIZAR FOR, WHILE ou FOREACH. UTIL
 8. Crie um endpoint de API para cada uma das operações acima.
 9. Faça deploy da sua API para o Vercel.
 
-Ao finalizar, envie o link do GitHub e da sua API do Vercel para o Classroom.
-8. Crie um endpoint de API para cada uma das operações acima.
+Ao finalizar, envie o link do seu repositório no GitHub, com o arquivo de especificação do Bruno.
 
