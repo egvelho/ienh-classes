@@ -1,6 +1,6 @@
 export async function fetchRoute(coordsA, coordsB) {
-  const start = `${coordsA.latitude},${coordsA.longitude}`;
-  const end = `${coordsB.latitude},${coordsB.longitude}`;
+  const start = `${coordsA.longitude},${coordsA.latitude}`;
+  const end = `${coordsB.longitude},${coordsB.latitude}`;
 
   const url = `http://router.project-osrm.org/route/v1/driving/${start};${end}?overview=full&geometries=geojson`;
 

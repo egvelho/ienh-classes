@@ -6,6 +6,8 @@ export async function getUserLocation() {
     return null;
   }
 
-  let location = await Location.getCurrentPositionAsync({});
+  let location = await Location.getCurrentPositionAsync({
+    mayShowUserSettingsDialog: false,
+  });
   return location;
 }
