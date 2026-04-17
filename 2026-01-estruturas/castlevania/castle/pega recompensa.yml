@@ -1,0 +1,23 @@
+info:
+  name: pega recompensa
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/pega-recompensa
+  body:
+    type: json
+    data: |-
+      {
+        "autenticacao": "RBD-101",
+        "valor": 600,
+        "motivo": "O grande herói do norte derrotou o dragão escarlate que aterrerizada o vilarejo sob as montanhas."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
