@@ -3,7 +3,7 @@ import streamlit as st
 # Configuração da página
 st.set_page_config(page_title="Exercícios de Python", layout="wide")
 
-st.title("🚀 Conversor de Exercícios: Jupyter para Streamlit")
+st.title("TP1 - Bloco de processamento de dados")
 
 # Menu lateral para navegação entre as questões
 questao = st.sidebar.selectbox(
