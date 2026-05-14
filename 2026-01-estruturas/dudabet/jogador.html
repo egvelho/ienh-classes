@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .carta {
+        width: 200px;
+        height: 300px;
+        border-radius: 8px;
+        background-image: url(https://static.wikia.nocookie.net/yugioh/images/9/98/Set_vertical.png/revision/latest/scale-to-width-down/150?cb=20150331135726&path-prefix=pt);
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+      }
+
+      .carta:not(:last-child) {
+        pointer-events: none;
+      }
+
+      .nome {
+        left: 22px;
+        top: 15px;
+        font-size: 12px;
+        position: absolute;
+      }
+
+      .aposta {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        text-align: center;
+        width: 100px;
+        height: 70px;
+        margin-left: -50px;
+        margin-top: -50px;
+        font-size: 70px;
+      }
+
+      .apostar-btns {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        z-index: 1000;
+      }
+
+      #score {
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="apostar-btns">
+      <button id="apostar-maior-btn">Apostar maior</button>
+      <button id="apostar-menor-btn">Apostar menor</button>
+    </div>
+    <div id="score"></div>
+    <div id="apostas"></div>
+    <script>
+      let maiorOuMenor = "Menor";
+      let acerto = 0;
+      let erro = 0;
+
+      const apostas = [];
+      const scoreDiv = document.getElementById("score");
+      const apostasDiv = document.getElementById("apostas");
+      const maiorBtn = document.getElementById("apostar-maior-btn");
+      const menorBtn = document.getElementById("apostar-menor-btn");
+
+      maiorOuMenor = "Menor";
+      menorBtn.style.backgroundColor = "green";
+      maiorBtn.style.backgroundColor = "red";
+
+      menorBtn.onclick = () => {
+        maiorOuMenor = "Menor";
+        menorBtn.style.backgroundColor = "green";
+        maiorBtn.style.backgroundColor = "red";
+      };
+
+      maiorBtn.onclick = () => {
+        maiorOuMenor = "Maior";
+        menorBtn.style.backgroundColor = "red";
+        maiorBtn.style.backgroundColor = "green";
+      };
+
+      const cartasSSE = new EventSource("/cartas");
+
+      let x = 0;
+      let y = 0;
+      let z = 1;
+
+      function desenhaAposta(aposta) {
+        const carta = document.createElement("div");
+        carta.className = "carta";
+        x += 10;
+        y += 10;
+        z++;
+        carta.style.left = `${x}px`;
+        carta.style.top = `${y}px`;
+        carta.style.zIndex = z;
+        carta.onclick = () => {
+          cartasSSE.close();
+          apostas.pop();
+          carta.style.backgroundImage =
+            "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2NK4XXoCatp8VJTyHGIpB5ko9Qkestw1KwA&s)";
+          carta.innerHTML = `
+            <div class="nome">${aposta.nome}</div>
+            <div class="aposta" style="color: ${`rgb(${Math.floor(Math.random() * 127) + 127}, ${Math.floor(Math.random() * 127) + 127}, ${Math.floor(Math.random() * 127) + 127})`}">${aposta.aposta}</div>            
+          `;
+          setTimeout(() => {
+            carta.remove();
+            console.log(aposta, maiorOuMenor);
+            if (
+              (aposta.aposta >= 8 && maiorOuMenor === "Maior") ||
+              (aposta.aposta < 8 && maiorOuMenor === "Menor")
+            ) {
+              acerto++;
+            } else {
+              erro++;
+            }
+
+            score.innerHTML = `Acertos: ${acerto} | Erros: ${erro}`;
+
+            if (apostas.length === 0) {
+              if (acerto > erro) {
+                alert("Ganhemoooo");
+              } else if (acerto === erro) {
+                alert("Empatemoooo");
+              } else {
+                alert("Perdemoooo");
+              }
+            }
+          }, 2000);
+        };
+        apostasDiv.append(carta);
+      }
+
+      cartasSSE.onmessage = (event) => {
+        const aposta = JSON.parse(event.data);
+        apostas.push(aposta);
+        desenhaAposta(aposta);
+      };
+    </script>
+  </body>
+</html>
