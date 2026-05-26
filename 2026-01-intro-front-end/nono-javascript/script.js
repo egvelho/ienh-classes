@@ -32,7 +32,7 @@ const { nome, sobrenome } = duda;
 const cores = ["vermelho", "verde", "azul", "amarelo", "roxo"];
 const [primeiraCor, segundaCor, ...coresRestantes] = cores;
 //const { 2: primeiraCor } = cores;
-alert(coresRestantes);
+//alert(coresRestantes);
 
 const pessoaSecreta = {
   nome: "Rodolfo",
@@ -49,7 +49,7 @@ const pessoaSecreta = {
 const { artistaFavorita, filmeFavorito, ...informacoesRestantes } =
   pessoaSecreta;
 
-console.log(informacoesRestantes);
+//console.log(informacoesRestantes);
 
 const numerosA = [6, 7, 8];
 const numerosB = [4, 2, 1];
@@ -71,10 +71,36 @@ const pessoaCompleta = {
   ...pessoaExtra,
 };
 
-console.log(pessoaCompleta);
+//console.log(pessoaCompleta);
 
 //mostraNomeCompleto(nome, sobrenome);
 
 function mostraNomeCompleto(nome, sobrenome) {
   alert(nome + " " + sobrenome);
 }
+
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8];
+
+const nomesCompletos = pessoas.map(
+  ({ nome, sobrenome }) => `${nome} ${sobrenome}`,
+);
+
+const ul = document.querySelector("#nomes");
+
+const nomesCompletosLi = nomesCompletos.map((nomeCompleto) => {
+  return `<li>${nomeCompleto}</li>`;
+});
+
+//ul.innerHTML = nomesCompletosLi.join("");
+
+const pessoasLi = pessoas.map(({ nome, sobrenome, idade }) => {
+  const pessoa = document.createElement("li");
+  pessoa.innerHTML = `${nome} ${sobrenome}`;
+  pessoa.className = "pessoa";
+  pessoa.onclick = () => {
+    alert(`A idade da pessoa é: ${idade}`);
+  };
+  return pessoa;
+});
+
+ul.append(...pessoasLi);
