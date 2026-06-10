@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>robertos-chat</title>
+  </head>
+  <body>
+    <div id="app">
+      <input
+        id="username-input"
+        type="text"
+        placeholder="Defina seu nome de usuário"
+      />
+      <button id="username-btn">Definir username</button>
+      <div id="mensagens-chat-div"></div>
+      <input type="text" id="mensagem-chat-input" />
+      <button id="mensagem-chat-btn">Enviar</button>
+      <div id="usuarios-chat-div"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+    <style>
+      #usuarios-chat-div {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      #usuarios-chat-div span {
+        padding: 8px;
+        margin-block: 8px;
+        background-color: #666;
+        border-radius: 8px;
+      }
+    </style>
+  </body>
+</html>

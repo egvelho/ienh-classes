@@ -1,0 +1,22 @@
+{
+  "name": "Roberto's Chat",
+  "short_name": "Roberto's",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#666666",
+  "theme_color": "#B7C2DD",
+  "icons": [
+    {
+      "src": "https://www.cccreationsusa.com/wp-content/uploads/2017/10/apple-touch-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/145/145812.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
