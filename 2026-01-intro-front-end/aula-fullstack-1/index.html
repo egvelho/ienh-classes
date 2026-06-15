@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="input-frase" placeholder="Digite a frase" />
+      <button id="btn-enviar">Enviar</button>
+    </div>
+    <div id="frase-atual"></div>
+    <script>
+      const inputFrase = document.getElementById("input-frase");
+      const btnEnviar = document.getElementById("btn-enviar");
+      const fraseAtual = document.getElementById("frase-atual");
+
+      btnEnviar.onclick = () => {
+        fetch("/troca-frase/" + inputFrase.value).then((response) => {
+          alert("frase atualizada com sucesso!");
+          mostraFrase();
+        });
+      };
+
+      function mostraFrase() {
+        fetch("/mostra-frase").then((response) => {
+          response.json().then((fraseJson) => {
+            fraseAtual.innerHTML = fraseJson.frase;
+          });
+        });
+      }
+
+      window.onload = mostraFrase;
+    </script>
+  </body>
+</html>
