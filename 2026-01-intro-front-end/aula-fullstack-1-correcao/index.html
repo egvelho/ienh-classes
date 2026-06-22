@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        background-color: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Helvetica;
+      }
+
+      .form-login {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 192px;
+        padding: 8px;
+        border-radius: 8px;
+        background-color: white;
+      }
+
+      .form-login-title {
+        font-size: 16px;
+        margin: 0;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      #btn-submit {
+        background-color: purple;
+        color: white;
+        text-transform: uppercase;
+        border: none;
+        padding: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-login">
+      <h1 class="form-login-title">Entrar na sua conta</h1>
+      <input type="text" placeholder="Usuário" id="input-usuario" />
+      <input type="password" placeholder="Senha" id="input-senha" />
+      <button id="btn-submit">Login</button>
+    </div>
+    <script>
+      const inputUsuario = document.querySelector("#input-usuario");
+      const inputSenha = document.querySelector("#input-senha");
+      const btnSubmit = document.querySelector("#btn-submit");
+
+      btnSubmit.onclick = async () => {
+        const formLogin = {
+          usuario: inputUsuario.value,
+          senha: inputSenha.value,
+        };
+
+        const formLoginJson = JSON.stringify(formLogin);
+
+        const resposta = await fetch(`/faiz-login-pa-nois`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: formLoginJson,
+        });
+        const respostaJson = await resposta.json();
+
+        respostaJson.success && alert("Login realizado com sucesso!");
+        !respostaJson.success && alert("Usuário ou senha inválidos!");
+
+        /*fetch(`/faiz-login-pa-nois/${usuario}/${senha}`).then((resposta) => {
+          resposta.json().then((respostaJson) => {
+            respostaJson.success && alert("Login realizado com sucesso!");
+            !respostaJson.success && alert("Usuário ou senha inválidos!");
+          });
+        });*/
+      };
+    </script>
+  </body>
+</html>
