@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background-color: #ccc;
+      }
+
+      .container-main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        gap: 8px;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+
+      .item-a {
+        flex: 1;
+        overflow: scroll;
+        background-color: white;
+      }
+
+      .item-b {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .item-c {
+        flex: 1;
+        background-color: white;
+      }
+
+      .item-d {
+        flex: 1;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-main">
+      <div class="item-a">
+        <h1>Tarefas</h1>
+        <ol id="lista-tarefas"></ol>
+      </div>
+      <div class="item-b">
+        <div class="item-c">
+          <h1>Ver tarefa</h1>
+          <input
+            id="input-indice-tarefa"
+            type="text"
+            placeholder="Índice da tarefa"
+          />
+          <button id="btn-ver-tarefa">Ok</button>
+          <p id="texto-tarefa"></p>
+        </div>
+        <div class="item-d">
+          <h1>Adicionar tarefa</h1>
+          <div>
+            <input
+              id="input-tarefa"
+              type="text"
+              placeholder="Digite a sua tarefa"
+            />
+            <button id="btn-enviar-tarefa">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const listaTarefasUl = document.getElementById("lista-tarefas");
+
+      const inputTarefa = document.getElementById("input-tarefa");
+      const btnEnviarTarefa = document.getElementById("btn-enviar-tarefa");
+
+      const inputIndiceTarefa = document.getElementById("input-indice-tarefa");
+      const btnVerTarefa = document.getElementById("btn-ver-tarefa");
+      const textoTarefa = document.getElementById("texto-tarefa");
+
+      btnVerTarefa.onclick = async () => {
+        const indice = inputIndiceTarefa.value;
+        console.log("INDICE DIGITADO", indice);
+        const url = `/tarefas/${indice}`;
+        console.log("ENVIAR PARA", url);
+        const resposta = await fetch(url);
+        const tarefaObj = await resposta.json();
+        console.log("RESPOSTA DO BACKEND", tarefaObj);
+        textoTarefa.innerHTML = tarefaObj.tarefa;
+      };
+
+      btnEnviarTarefa.onclick = async () => {
+        const tarefaJson = {
+          tarefa: inputTarefa.value,
+        };
+        const resposta = await fetch("/tarefas", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(tarefaJson),
+        });
+
+        const deuSucesso = await resposta.json();
+
+        deuSucesso.sucesso && alert("Tarefa criada com sucesso!");
+        !deuSucesso.sucesso && alert("Tu não faz nada certo mesmo, né?");
+        carregaTarefas();
+      };
+
+      async function carregaTarefas() {
+        const resposta = await fetch("/tarefas");
+        const tarefas = await resposta.json();
+        const tarefasLis = tarefas
+          .map((tarefa) => `<li>${tarefa}</li>`)
+          .join("");
+
+        listaTarefasUl.innerHTML = tarefasLis;
+      }
+
+      carregaTarefas();
+    </script>
+  </body>
+</html>
